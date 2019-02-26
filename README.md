@@ -1,3 +1,5 @@
+**Our experiment code go to ./experiments**
+
 # MLP Cluster Tutorial Branch
 A short code repo that showcases a potential framework for carrying out experiments on the MLP Cluster.
 
