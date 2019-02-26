@@ -1,5 +1,11 @@
 **Our experiment code go to ./experiments**
 
+run this line to create folders for data and results
+
+```mkdir ./experiments/data ./experiments/experiment_results```
+
+put unziped dataset folder under /experiments/data
+
 # MLP Cluster Tutorial Branch
 A short code repo that showcases a potential framework for carrying out experiments on the MLP Cluster.
 
