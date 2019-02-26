@@ -601,12 +601,12 @@ for epoch in range(num_epochs):
 
 with open(experiment_logs+'losses.csv', 'w') as csvFile:
     writer = csv.writer(csvFile)
-    writer.writerows(G_losses)
-    writer.writerows(D_losses)
+    writer.writerows([G_losses])
+    writer.writerows([D_losses])
 
 csvFile.close()
 
-
+print('Losses saved')
 
 
 ######################################################################
@@ -630,3 +630,5 @@ img_index = 0
 for img in img_list:
     vutils.save_image(img, os.path.abspath(os.path.join(experiment_outputs, str(img_index)+'.png')))
     img_index += 1
+
+print('Images saved')
