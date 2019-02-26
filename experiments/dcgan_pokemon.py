@@ -73,7 +73,7 @@ torch.manual_seed(manualSeed)
 # 
 
 # Root directory for dataset
-dataroot = "/data/pokemon_dataset"
+dataroot = "data/pokemon_dataset"
 
 # Number of workers for dataloader
 workers = 2
