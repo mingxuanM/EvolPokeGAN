@@ -117,7 +117,7 @@ experiment_name = 'PokeGAN_experiment'
 
 # Create folders for this experiment
 
-experiment_folder = os.path.abspath(experiment_name)
+experiment_folder = os.path.abspath(os.path.join('experiment_results', experiment_name))
 experiment_logs = os.path.abspath(os.path.join(experiment_folder, "result_loss"))
 experiment_saved_models = os.path.abspath(os.path.join(experiment_folder, "saved_models"))
 experiment_outputs = os.path.abspath(os.path.join(experiment_folder, "outputs"))
