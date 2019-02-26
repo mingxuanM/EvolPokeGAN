@@ -27,6 +27,9 @@ import numpy as np
 from IPython.display import HTML
 from storage_utils import save_statistics
 import csv
+from arg_extractor import get_args
+
+args = get_args()  # get arguments from command line
 
 # Set random seem for reproducibility
 manualSeed = 999
@@ -98,7 +101,7 @@ ngf = 64
 ndf = 64
 
 # Number of training epochs
-num_epochs = 5
+num_epochs = args.num_epochs
 
 # Learning rate for optimizers
 lr = 0.0002
@@ -114,7 +117,7 @@ experiment_name = 'PokeGAN_experiment'
 
 # Create folders for this experiment
 
-experiment_folder = os.path.abspath(experiment_name)
+experiment_folder = os.path.abspath(os.path.join('experiment_results', experiment_name))
 experiment_logs = os.path.abspath(os.path.join(experiment_folder, "result_loss"))
 experiment_saved_models = os.path.abspath(os.path.join(experiment_folder, "saved_models"))
 experiment_outputs = os.path.abspath(os.path.join(experiment_folder, "outputs"))
@@ -565,7 +568,7 @@ for epoch in range(num_epochs):
         D_losses.append(errD.item())
         
         # Check how the generator is doing by saving G's output on fixed_noise
-        if (iters % 500 == 0) or ((epoch == num_epochs-1) and (i == len(dataloader)-1)):
+        if (iters % 300 == 0) or ((epoch == num_epochs-1) and (i == len(dataloader)-1)):
             with torch.no_grad():
                 fake = netG(fixed_noise).detach().cpu()
             img_list.append(vutils.make_grid(fake, padding=2, normalize=True))
