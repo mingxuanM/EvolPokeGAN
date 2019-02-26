@@ -571,6 +571,8 @@ for epoch in range(num_epochs):
             img_list.append(vutils.make_grid(fake, padding=2, normalize=True))
             
         iters += 1
+    torch.save(netD.state_dict(), os.path.abspath(os.path.join(experiment_saved_models, "model_D_"+str(epoch))))
+    torch.save(netG.state_dict(), os.path.abspath(os.path.join(experiment_saved_models, "model_G_"+str(epoch))))
 
 
 ######################################################################
