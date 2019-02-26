@@ -27,6 +27,9 @@ import numpy as np
 from IPython.display import HTML
 from storage_utils import save_statistics
 import csv
+from arg_extractor import get_args
+
+args = get_args()  # get arguments from command line
 
 # Set random seem for reproducibility
 manualSeed = 999
@@ -98,7 +101,7 @@ ngf = 64
 ndf = 64
 
 # Number of training epochs
-num_epochs = 50
+num_epochs = args.num_epochs
 
 # Learning rate for optimizers
 lr = 0.0002
