@@ -10,6 +10,7 @@ import matplotlib.animation as animation
 import random
 import json
 import os
+import argparse
 
 from torchvision import transforms
 from torch.utils.data import DataLoader
@@ -23,19 +24,34 @@ random.seed(seed)
 torch.manual_seed(seed)
 print("Random Seed: ", seed)
 
+parser = argparse.ArgumentParser()
+parser.add_argument('--batch_size', type=int, default=64, help='Batch size during training')
+parser.add_argument('--img_size', type=int, default=64, help='Spatial size of training images. All images will be resized to this size during preprocessing')
+parser.add_argument('--nc', type=int, default=3, help='Number of channles in the training images. For coloured images this is 3')
+parser.add_argument('--nz', type=int, default=100, help='Size of the Z latent vector (the input to the generator)')
+parser.add_argument('--ngf', type=int, default=64, help='Size of feature maps in the generator. The depth will be multiples of this')
+parser.add_argument('--ndf', type=int, default=64, help='Size of features maps in the discriminator. The depth will be multiples of this')
+parser.add_argument('--num_epochs', type=int, default=50, help='Number of training epochs')
+parser.add_argument('--lr', type=float, default=0.0002, help='Learning rate for optimizers')
+parser.add_argument('--beta1', type=float, default=0.5, help='Beta1 hyperparam for Adam optimizer')
+parser.add_argument('--save_epoch', type=int, default=10, help='Save step')
+parser.add_argument('--n_critic', type=int, default=5, help='Number of iterations to train discriminator before training generator')
+
+args = parser.parse_args()
+
 # Parameters to define the model.
 params = {
-    "bsize" : 64, # Batch size during training.
-    'imsize' : 64, # Spatial size of training images. All images will be resized to this size during preprocessing.
-    'nc' : 3, # Number of channles in the training images. For coloured images this is 3.
-    'nz' : 100, # Size of the Z latent vector (the input to the generator).
-    'ngf' : 64, # Size of feature maps in the generator. The depth will be multiples of this.
-    'ndf' : 64, # Size of features maps in the discriminator. The depth will be multiples of this.
-    'num_epochs' : 50, # Number of training epochs.
-    'lr' : 0.0002, # Learning rate for optimizers
-    'beta1' : 0.5, # Beta1 hyperparam for Adam optimizer
-    'save_epoch' : 10, # Save step.
-    'n_critic' : 5} #Number of iterations to train discriminator before training generator.
+    "bsize" : args.batch_size, # Batch size during training.
+    'imsize' : args.img_size, # Spatial size of training images. All images will be resized to this size during preprocessing.
+    'nc' : args.nc, # Number of channles in the training images. For coloured images this is 3.
+    'nz' : args.nz, # Size of the Z latent vector (the input to the generator).
+    'ngf' : args.ngf, # Size of feature maps in the generator. The depth will be multiples of this.
+    'ndf' : args.ndf, # Size of features maps in the discriminator. The depth will be multiples of this.
+    'num_epochs' : args.num_epochs, # Number of training epochs.
+    'lr' : args.lr, # Learning rate for optimizers
+    'beta1' : args.beta1, # Beta1 hyperparam for Adam optimizer
+    'save_epoch' : args.save_epoch, # Save step.
+    'n_critic' : args.n_critic} #Number of iterations to train discriminator before training generator.
 
 # Directory path to store the result
 result_dir = 'result/' + str(params['bsize']) + '-' + str(params['num_epochs'])
