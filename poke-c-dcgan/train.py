@@ -42,6 +42,9 @@ result_dir = 'result/' + str(params['bsize']) + '-' + str(params['num_epochs'])
 if not os.path.exists(result_dir):
     os.mkdir(result_dir)
 
+if not os.path.exists('checkpoints'):
+    os.mkdir('checkpoints')
+
 # Use GPU is available else use CPU.
 device = torch.device("cuda:0" if(torch.cuda.is_available()) else "cpu")
 print(device, " will be used.\n")
