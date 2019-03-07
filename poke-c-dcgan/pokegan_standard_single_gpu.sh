@@ -34,4 +34,4 @@ export DATASET_DIR=${TMP}/datasets/
 
 
 source /home/${STUDENT_ID}/miniconda3/bin/activate mlp
-python train.py --num_epochs 500 --save_epoch 100
+python train.py --num_epochs 1000 --save_epoch 100
