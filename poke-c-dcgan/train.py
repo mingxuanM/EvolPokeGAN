@@ -3,6 +3,7 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import torchvision
 import torchvision.utils as vutils
 import numpy as np
 import matplotlib.pyplot as plt
@@ -276,15 +277,18 @@ for epoch in range(params['num_epochs']):
             'optimizerD' : optimizerD.state_dict(),
             'params' : params
             }, 'checkpoints/model_epoch_{}.pth'.format(epoch))
-        plt.figure(figsize=(6, 6))
-        plt.axis("off")
-        plt.title("Epoch_{}".format(epoch))
+        # plt.figure(figsize=(6, 6))
+        # plt.axis("off")
+        # plt.title("Epoch_{}".format(epoch))
         # Visualize output on fixed noise and conditions.
         with torch.no_grad():
             fake_data = netG(fixed_noise, fixed_condition_ohe1, fixed_condition_ohe2).detach().cpu()
-            print(fake_data.size())
-        img_save = plt.imshow(np.transpose(vutils.make_grid(fake_data, nrow=6, padding=2, normalize=True).cpu(), (1, 2, 0)))
-        img_save.figure.savefig(result_dir +'/Epoch_{}'.format(epoch))
+            # print(fake_data.size())
+            # vutils.save_image(fake_data, (result_dir +'/Epoch_{}.png'.format(epoch)), nrow=6, padding=2)
+        # img_save = plt.imshow(np.transpose(vutils.make_grid(fake_data, nrow=6, padding=2, normalize=True).cpu(), (1, 2, 0)))
+        # img_save.figure.savefig(result_dir +'/Epoch_{}'.format(epoch))
+        img_data = np.transpose(vutils.make_grid(fake_data, nrow=6, padding=2, normalize=True).cpu(), (1, 2, 0))
+        plt.imsave(result_dir +'/Epoch_{}.png'.format(epoch), img_data)
 
 # Save the final trained model.
 torch.save({
@@ -294,14 +298,18 @@ torch.save({
             'optimizerD' : optimizerD.state_dict(),
             'params' : params
             }, 'checkpoints/model_final.pth')
-plt.figure(figsize=(6, 6))
-plt.axis("off")
-plt.title("Epoch_{}".format(params['num_epochs']))
+# plt.figure(figsize=(6, 6))
+# plt.axis("off")
+# plt.title("Epoch_{}".format(params['num_epochs']))
 # Visualize output on fixed noise and conditions.
 with torch.no_grad():
     fake_data = netG(fixed_noise, fixed_condition_ohe1, fixed_condition_ohe2).detach().cpu()
-img_save = plt.imshow(np.transpose(vutils.make_grid(fake_data, nrow=6, padding=2, normalize=True).cpu(), (1, 2, 0)))
-img_save.figure.savefig(result_dir +'/Epoch_final')
+# vutils.save_image(fake_data, (result_dir +'/Epoch_{}.png'.format(epoch)), nrow=6, padding=2)
+# img_save = plt.imshow(np.transpose(vutils.make_grid(fake_data, nrow=6, padding=2, normalize=True).cpu(), (1, 2, 0)))
+# img_save.figure.savefig(result_dir +'/Epoch_final.png')
+img_data = np.transpose(vutils.make_grid(fake_data, nrow=6, padding=2, normalize=True).cpu(), (1, 2, 0))
+plt.imsave(result_dir +'/Epoch_{}.png'.format(epoch), img_data)
+
 
 # Plot the training losses.
 plt.figure(figsize=(10,5))
