@@ -33,7 +33,7 @@ export DATASET_DIR=${TMP}/datasets/
 # Activate the relevant virtual environment:
 
 
-source /home/${STUDENT_ID}/miniconda3/bin/activate mlp
+source /home/${STUDENT_ID}/miniconda3/bin/activate mlp3
 
 
 
