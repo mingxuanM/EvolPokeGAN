@@ -127,10 +127,10 @@ onehot = onehot.scatter_(1, torch.LongTensor([i for i in range(params['vocab_siz
 
 fixed_noise = torch.randn(36, params['nz'], 1, 1, device=device)
 #Contructing fixed conditions
-frow1 = torch.cat((torch.ones(6, 1)*tp2ind['water'], torch.ones(6, 1)*tp2ind['flying']), dim=1)
-frow2 = torch.cat((torch.ones(6, 1)*tp2ind['bug'], torch.ones(6, 1)*tp2ind['grass']), dim=1)
-frow3 = torch.cat((torch.ones(6, 1)*tp2ind['rock'], torch.ones(6, 1)*tp2ind['ground']), dim=1)
-frow4 = torch.cat((torch.ones(6, 1)*tp2ind['normal'], torch.ones(6, 1)*tp2ind['flying']), dim=1)
+frow1 = torch.cat((torch.ones(6, 1)*tp2ind['bug'], torch.ones(6, 1)*tp2ind['poison']), dim=1)
+frow2 = torch.cat((torch.ones(6, 1)*tp2ind['normal'], torch.ones(6, 1)*tp2ind['flying']), dim=1)
+frow3 = torch.cat((torch.ones(6, 1)*tp2ind['grass'], torch.ones(6, 1)*tp2ind['poison']), dim=1)
+frow4 = torch.cat((torch.ones(6, 1)*tp2ind['rock'], torch.ones(6, 1)*tp2ind['ground']), dim=1)
 frow5 = torch.cat((torch.ones(6, 1)*tp2ind['electric'], torch.ones(6, 1)*tp2ind['steel']), dim=1)
 frow6 = torch.cat((torch.ones(6, 1)*tp2ind['ghost'], torch.ones(6, 1)*tp2ind['poison']), dim=1)
 fixed_condition = torch.cat((frow1, frow2, frow3, frow4, frow5,
