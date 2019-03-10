@@ -37,6 +37,9 @@ parser.add_argument('--lr', type=float, default=0.0002, help='Learning rate for 
 parser.add_argument('--beta1', type=float, default=0.5, help='Beta1 hyperparam for Adam optimizer')
 parser.add_argument('--save_epoch', type=int, default=10, help='Save step')
 parser.add_argument('--n_critic', type=int, default=5, help='Number of iterations to train discriminator before training generator')
+parser.add_argument('--csv_file', type=str, default='data/pokemon-dex.csv', help='Path of csv file')
+parser.add_argument('--root_dir', type=str, default='data/pokedex-images-rgb', help='Path of training images')
+parser.add_argument('--param_file', type=str, default='data/pokegan-params.json', help='Path of json file')
 
 args = parser.parse_args()
 
@@ -74,9 +77,9 @@ transform = transforms.Compose([
     transforms.Normalize((0.5, 0.5, 0.5),
         (0.5, 0.5, 0.5))])
 
-pokemon_dataset = PokemonDataset(csv_file='data/pokemon-dex.csv',
-                             root_dir='data/pokedex-images-rgb/',
-                             param_file='data/pokegan-params.json',
+pokemon_dataset = PokemonDataset(csv_file=args.csv_file,
+                             root_dir=args.root_dir,
+                             param_file=args.param_file,
                              transform=transform)
 
 dataloader = DataLoader(pokemon_dataset, batch_size=params['bsize'],
