@@ -5,7 +5,8 @@ import math
 import os
 
 
-save_dir = '../data/evol_pairs_images'
+save_dir = '../data/evol_pairs_supermini'
+img_dir = '../data/pokemon-suppermini/'
 
 if not os.path.exists(save_dir):
     os.mkdir(save_dir)
@@ -14,8 +15,9 @@ csv_file = pd.read_csv('../data/pokemon-dex-ev.csv')
 ev_idxs = csv_file.iloc[:, 32].values
 pre_idxs = csv_file.iloc[:, 33].values
 
+
 idx_pairs = list(zip(ev_idxs, pre_idxs))
-img_dir = '../data/pokedex-images-rgb/'
+
 for p in idx_pairs:
     if not math.isnan(p[1]):
         im_pair = []
@@ -25,7 +27,7 @@ for p in idx_pairs:
         total_width = sum(widths)
         max_height = max(heights)
 
-        new_im = Image.new('RGB', (total_width, max_height))
+        new_im = Image.new('RGBA', (total_width, max_height))
         x_offset = 0
         for im in im_pair:
             new_im.paste(im, (x_offset,0))

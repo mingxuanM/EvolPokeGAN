@@ -31,9 +31,16 @@ def html_from_url(url):
 
 
 
-soup = BeautifulSoup(html_from_url('https://pokemondb.net/pokedex/national'), 'html.parser')
-images = soup.find_all('span', {'class': 'img-fixed img-sprite'})
+# soup = BeautifulSoup(html_from_url('https://pokemondb.net/pokedex/national'), 'html.parser')
+# images = soup.find_all('span', {'class': 'img-fixed img-sprite'})
+# idx = 1
+# for im in images:
+#     img_from_url(im['data-src'], str('%03d' % idx), '../data/pokemon-mini')
+#     idx += 1
+
+soup = BeautifulSoup(html_from_url('https://pokemondb.net/sprites'), 'html.parser')
+images = soup.find_all('span', {'class': 'img-fixed icon-pkmn'})
 idx = 1
 for im in images:
-    img_from_url(im['data-src'], str('%03d' % idx), '../data/pokemon-mini')
+    img_from_url(im['data-src'], str('%03d' % idx), '../data/pokemon-suppermini')
     idx += 1
