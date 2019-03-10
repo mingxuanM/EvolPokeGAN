@@ -1,0 +1,22 @@
+#!/bin/bash --login
+#
+#PBS -N pokegan
+#
+# Select 1 full node
+#PBS -q gpu
+#PBS -l select=1:ncpus=40:ngpus=4
+#PBS -l walltime=2:00:0
+
+# The budget to charge to, this is the project code (in this case the MSc)
+#PBS -A d167-s1887493
+
+# Change to the directory that the job was submitted from
+cd $PBS_O_WORKDIR
+
+# Load any required modules
+module load cuda
+module load anaconda/python3
+source activate CPR
+
+# Scripts
+python train.py
