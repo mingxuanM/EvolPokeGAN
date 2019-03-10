@@ -10,9 +10,7 @@ save_dir = '../data/evol_pairs_images'
 if not os.path.exists(save_dir):
     os.mkdir(save_dir)
 
-# os.chdir('/Users/steve/Edinburgh/MLP/MLP_group_project/EvolPokeGAN/poke-c-dcgan/data/')
 csv_file = pd.read_csv('../data/pokemon-dex-ev.csv')
-# csv_file['evolution'] = csv_file.evolution.astype(float)
 ev_idxs = csv_file.iloc[:, 32].values
 pre_idxs = csv_file.iloc[:, 33].values
 

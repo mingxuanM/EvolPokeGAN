@@ -40,7 +40,7 @@ class PokemonDataset(Dataset):
 
     def __getitem__(self, idx):
         img_path = os.path.join(self.root_dir,
-                                str('%03d' % self.tp_frame.iloc[idx, 32])+".png")
+                                '/' + str('%03d' % self.tp_frame.iloc[idx, 32])+".png")
 
         image = Image.open(img_path)
         tps = self.tp_frame.iloc[idx, 36:38].values
