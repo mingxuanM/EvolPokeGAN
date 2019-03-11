@@ -24,7 +24,6 @@ import torchvision.utils as vutils
 import numpy as np
 # import matplotlib.pyplot as plt
 # import matplotlib.animation as animation
-from IPython.display import HTML
 from storage_utils import save_statistics
 import csv
 from arg_extractor import get_args
