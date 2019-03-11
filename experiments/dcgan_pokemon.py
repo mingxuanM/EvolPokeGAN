@@ -113,6 +113,13 @@ experiment_name = 'PokeGAN_experiment'
 
 # Create folders for this experiment
 
+if not os.path.exists('experiment_results'):  # If experiment directory does not exist
+    os.mkdir('experiment_results')
+
+if not os.path.exists('experiment_results/PokeGAN_experiment'):  # If experiment directory does not exist
+    os.mkdir('experiment_results/PokeGAN_experiment')
+    
+
 experiment_folder = os.path.abspath(os.path.join('experiment_results', experiment_name))
 experiment_logs = os.path.abspath(os.path.join(experiment_folder, "result_loss"))
 experiment_saved_models = os.path.abspath(os.path.join(experiment_folder, "saved_models"))
