@@ -25,9 +25,7 @@ import numpy as np
 # import matplotlib.pyplot as plt
 # import matplotlib.animation as animation
 import csv
-from arg_extractor import get_args
 
-args = get_args()  # get arguments from command line
 
 # Set random seem for reproducibility
 manualSeed = 999
