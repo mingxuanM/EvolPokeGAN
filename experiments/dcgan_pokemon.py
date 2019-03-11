@@ -72,7 +72,7 @@ torch.manual_seed(manualSeed)
 # 
 
 # Root directory for dataset
-dataroot = "data"
+dataroot = "dataset"
 
 # Number of workers for dataloader
 workers = 2
