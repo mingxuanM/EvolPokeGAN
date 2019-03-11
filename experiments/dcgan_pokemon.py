@@ -76,13 +76,13 @@ torch.manual_seed(manualSeed)
 # 
 
 # Root directory for dataset
-dataroot = "data/pokemon_dataset"
+dataroot = "data"
 
 # Number of workers for dataloader
 workers = 2
 
 # Batch size during training
-batch_size = 128
+batch_size = 64
 
 # Spatial size of training images. All images will be resized to this
 #   size using a transformer.
@@ -101,7 +101,7 @@ ngf = 64
 ndf = 64
 
 # Number of training epochs
-num_epochs = args.num_epochs
+num_epochs = 500
 
 # Learning rate for optimizers
 lr = 0.0002
