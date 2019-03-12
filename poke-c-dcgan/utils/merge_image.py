@@ -11,6 +11,14 @@ img_dir = '../data/pokemon-suppermini/'
 if not os.path.exists(save_dir):
     os.mkdir(save_dir)
 
+
+def crop_im(im):
+    crop_rectangle = (5, 0, 35, 30)
+    return im.crop(crop_rectangle)
+
+
+
+
 csv_file = pd.read_csv('../data/pokemon-dex-ev.csv')
 ev_idxs = csv_file.iloc[:, 32].values
 pre_idxs = csv_file.iloc[:, 33].values
@@ -21,8 +29,10 @@ idx_pairs = list(zip(ev_idxs, pre_idxs))
 for p in idx_pairs:
     if not math.isnan(p[1]):
         im_pair = []
-        im_pair.append(Image.open(img_dir + '%03d' % int(p[0]) + '.png'))
-        im_pair.append(Image.open(img_dir + '%03d' % int(p[1]) + '.png'))
+        im1 = crop_im(Image.open(img_dir + '%03d' % int(p[0]) + '.png'))
+        im2 = crop_im(Image.open(img_dir + '%03d' % int(p[1]) + '.png'))
+        im_pair.append(im1)
+        im_pair.append(im2)
         widths, heights = zip(*(i.size for i in im_pair))
         total_width = sum(widths)
         max_height = max(heights)
