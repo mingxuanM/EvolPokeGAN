@@ -17,8 +17,6 @@ def crop_im(im):
     return im.crop(crop_rectangle)
 
 
-
-
 csv_file = pd.read_csv('../data/pokemon-dex-ev.csv')
 ev_idxs = csv_file.iloc[:, 32].values
 pre_idxs = csv_file.iloc[:, 33].values
