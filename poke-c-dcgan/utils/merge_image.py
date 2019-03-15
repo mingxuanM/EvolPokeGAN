@@ -5,8 +5,8 @@ import math
 import os
 
 
-save_dir = '../data/evol_pairs_supermini'
-img_dir = '../data/pokemon-suppermini/'
+save_dir = '../data/evol_pairs_mini'
+img_dir = '../data/pokemon-mini-rgb/'
 
 if not os.path.exists(save_dir):
     os.mkdir(save_dir)
@@ -27,8 +27,10 @@ idx_pairs = list(zip(ev_idxs, pre_idxs))
 for p in idx_pairs:
     if not math.isnan(p[1]):
         im_pair = []
-        im1 = crop_im(Image.open(img_dir + '%03d' % int(p[0]) + '.png'))
-        im2 = crop_im(Image.open(img_dir + '%03d' % int(p[1]) + '.png'))
+        im1 = Image.open(img_dir + '%03d' % int(p[0]) + '.png')
+        im2 = Image.open(img_dir + '%03d' % int(p[1]) + '.png')
+        # im1 = crop_im(im2)
+        # im2 = crop_im(im2)
         im_pair.append(im1)
         im_pair.append(im2)
         widths, heights = zip(*(i.size for i in im_pair))
