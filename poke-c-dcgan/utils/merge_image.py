@@ -5,8 +5,8 @@ import math
 import os
 
 
-save_dir = '../data/evol_pairs_mini_rgb'
-img_dir = '../data/pokemon-mini-rgb/'
+save_dir = '../data/evol_pairs_mini_rgb_r10'
+img_dir = '../data/pokemon-mini-rgb-r10/'
 
 if not os.path.exists(save_dir):
     os.mkdir(save_dir)
@@ -37,12 +37,12 @@ for p in idx_pairs:
         total_width = sum(widths)
         max_height = max(heights)
 
-        new_im = Image.new('RGBA', (total_width, max_height))
+        new_im = Image.new('RGB', (total_width, max_height))
         x_offset = 0
         for im in im_pair:
             new_im.paste(im, (x_offset,0))
             x_offset += im.size[0]
-        new_im.save(save_dir + '/' + '%03d' % int(p[0]) + '-ev' + '.png')
+        new_im.save(save_dir + '/' + '%03d' % int(p[0]) + '-ev-r10' + '.png')
 
 
 # images = []
