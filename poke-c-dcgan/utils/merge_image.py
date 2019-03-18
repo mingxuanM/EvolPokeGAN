@@ -5,7 +5,7 @@ import math
 import os
 
 
-save_dir = '../data/evol_pairs_mini'
+save_dir = '../data/evol_pairs_mini_rgb'
 img_dir = '../data/pokemon-mini-rgb/'
 
 if not os.path.exists(save_dir):
