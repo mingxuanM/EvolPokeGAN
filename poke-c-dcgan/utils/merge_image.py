@@ -5,8 +5,8 @@ import math
 import os
 
 
-save_dir = '../data/evol_pairs_mini_rgb_r10'
-img_dir = '../data/pokemon-mini-rgb-r10/'
+save_dir = '../data/test_pairs'
+img_dir = '../data/no_evol/'
 
 if not os.path.exists(save_dir):
     os.mkdir(save_dir)
@@ -16,6 +16,9 @@ def crop_im(im):
     crop_rectangle = (5, 0, 35, 30)
     return im.crop(crop_rectangle)
 
+def blank_image():
+    im = Image.new('RGB', (120,120), color=0)
+    return im
 
 csv_file = pd.read_csv('../data/pokemon-dex-ev.csv')
 ev_idxs = csv_file.iloc[:, 32].values

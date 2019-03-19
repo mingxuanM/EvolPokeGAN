@@ -11,6 +11,7 @@ import matplotlib.animation as animation
 import random
 import json
 from torchvision.utils import save_image
+import glob, os
 
 
 # batch_tensor = torch.randn(*(36, 3, 64, 64))
@@ -28,8 +29,8 @@ from torchvision.utils import save_image
 # img = plt.imshow(grid_img.permute(1, 2, 0))
 # img.figure.savefig('hahah')
 
+i = 0
+for infile in glob.glob('../data/evol_pairs_mini_rgb' + "/*.png"):
+    i += 1
 
-from PIL import Image
-
-im = Image.open("test.png")
-im.save("test-600.png", dpi=(600,600))
+print(i)
