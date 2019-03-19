@@ -61,4 +61,5 @@ target/
 
 .idea/
 experiments/data/
-experiments/experiment_results
+experiments/experiment_results/*/saved_models
+poke-c-dcgan/checkpoints
