@@ -37,9 +37,10 @@ parser.add_argument('--lr', type=float, default=0.0002, help='Learning rate for 
 parser.add_argument('--beta1', type=float, default=0.5, help='Beta1 hyperparam for Adam optimizer')
 parser.add_argument('--save_epoch', type=int, default=10, help='Save step')
 parser.add_argument('--n_critic', type=int, default=5, help='Number of iterations to train discriminator before training generator')
-parser.add_argument('--csv_file', type=str, default='data/pokemon-dex.csv', help='Path of csv file')
-parser.add_argument('--root_dir', type=str, default='data/pokedex-images-rgb', help='Path of training images')
+parser.add_argument('--csv_file', type=str, default='data/pokemon-dex-ev.csv', help='Path of csv file')
+parser.add_argument('--root_dir', type=str, default='data/pokemon-mini-rgb', help='Path of training images')
 parser.add_argument('--param_file', type=str, default='data/pokegan-params.json', help='Path of json file')
+parser.add_argument('--dataset', type=str, default='mini', help='dataset')
 
 args = parser.parse_args()
 
@@ -58,7 +59,7 @@ params = {
     'n_critic' : args.n_critic} #Number of iterations to train discriminator before training generator.
 
 # Directory path to store the result
-result_dir = 'result/' + str(params['bsize']) + '-' + str(params['num_epochs'])
+result_dir = 'result/' + str(params['bsize']) + '-' + str(params['num_epochs']) + '-' + str(args.dataset)
 if not os.path.exists(result_dir):
     os.mkdir(result_dir)
 

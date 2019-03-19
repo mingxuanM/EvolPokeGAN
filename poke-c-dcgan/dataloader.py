@@ -13,7 +13,7 @@ from six import iteritems
 class PokemonDataset(Dataset):
 
     def __init__(self, csv_file, root_dir, param_file, transform):
-        self.tp_frame = pd.read_csv(csv_file)
+        self.tp_frame = pd.read_csv(csv_file, nrows=721)
         self.root_dir = root_dir
         self.transform = transform
         self.param_file = param_file
@@ -41,6 +41,7 @@ class PokemonDataset(Dataset):
     def __getitem__(self, idx):
         # img_path = os.path.join(self.root_dir,
         #                         '/' + str('%03d' % self.tp_frame.iloc[idx, 32])+".png")
+        # print(self.tp_frame.iloc[idx, 32])
         img_path = self.root_dir + '/' + str('%03d' % self.tp_frame.iloc[idx, 32])+".png"
         image = Image.open(img_path)
         tps = self.tp_frame.iloc[idx, 36:38].values
