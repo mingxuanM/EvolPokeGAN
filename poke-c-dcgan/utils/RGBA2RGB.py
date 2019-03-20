@@ -3,8 +3,8 @@ import glob, os
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--src_img_dir", default='data/pokedex-images', help="The directory of source images")
-parser.add_argument("--pro_img_dir", default='data/pokedex-images-rgb', help="The directory of processed images")
+parser.add_argument("--src_img_dir", default='../data/pokemon-supermini', help="The directory of source images")
+parser.add_argument("--pro_img_dir", default='../data/pokemon-supermini-rgb', help="The directory of processed images")
 
 args = parser.parse_args()
 
@@ -16,6 +16,8 @@ for infile in glob.glob(args.src_img_dir + "/*.png"):
     file, ext = os.path.splitext(infile)
     file_name = file.split('/')[-1]
     im = Image.open(infile)
+    if im.mode == 'P':
+        im = im.convert('RGBA')
     im = im.convert('RGB')
     im.save(args.pro_img_dir + '/' + file_name + ".png", "PNG")
 print("Finished")
