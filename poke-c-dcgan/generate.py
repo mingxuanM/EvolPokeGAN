@@ -1,5 +1,5 @@
 import argparse
-
+import os
 import torch
 import torchvision.utils as vutils
 import numpy as np
@@ -15,11 +15,11 @@ parser.add_argument('-load_path', default='checkpoints-pokedex/model_500.pth', h
 parser.add_argument('-num_output', default=9, help='Number of generated outputs')
 parser.add_argument('-tp1', default='fire', help='Eye color')
 parser.add_argument('-tp2', default='<UNK>', help='Hair color')
-parser.add_argument('-load_json', default='data/animegan_params.json', help='Load path for params json.')
+parser.add_argument('-load_json', default='data/pokegan-params.json', help='Load path for params json.')
 args = parser.parse_args()
 
 # Load the checkpoint file.
-state_dict = torch.load(args.load_path)
+state_dict = torch.load(args.load_path, map_location=lambda storage, loc: storage)
 
 # Load color2ind dictionary from json parameter file.
 with open(args.load_json, 'r') as info_file:

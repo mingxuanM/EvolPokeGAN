@@ -63,3 +63,5 @@ target/
 experiments/data/
 experiments/experiment_results/*/saved_models
 poke-c-dcgan/checkpoints
+poke-c-dcgan/checkpoints-pokedex
+poke-c-dcgan/checkpoints-mini
