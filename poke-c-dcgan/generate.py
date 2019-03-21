@@ -45,6 +45,21 @@ noise = torch.randn(int(args.num_output), params['nz'], 1, 1, device=device)
 onehot = torch.zeros(params['vocab_size'], params['vocab_size'])
 onehot = onehot.scatter_(1, torch.LongTensor([i for i in range(params['vocab_size'])]).view(params['vocab_size'], 1), 1).view(params['vocab_size'], params['vocab_size'], 1, 1)
 
+fixed_noise = torch.randn(36, params['nz'], 1, 1, device=device)
+#Contructing fixed conditions
+frow1 = torch.cat((torch.ones(6, 1)*tp2ind['fire'], torch.ones(6, 1)*tp2ind['<UNK>']), dim=1)
+frow2 = torch.cat((torch.ones(6, 1)*tp2ind['flying'], torch.ones(6, 1)*tp2ind['<UNK>']), dim=1)
+frow3 = torch.cat((torch.ones(6, 1)*tp2ind['grass'], torch.ones(6, 1)*tp2ind['<UNK>']), dim=1)
+frow4 = torch.cat((torch.ones(6, 1)*tp2ind['water'], torch.ones(6, 1)*tp2ind['<UNK>']), dim=1)
+frow5 = torch.cat((torch.ones(6, 1)*tp2ind['dragon'], torch.ones(6, 1)*tp2ind['<UNK>']), dim=1)
+frow6 = torch.cat((torch.ones(6, 1)*tp2ind['bug'], torch.ones(6, 1)*tp2ind['<UNK>']), dim=1)
+fixed_condition = torch.cat((frow1, frow2, frow3, frow4, frow5,
+                                frow6), dim=0).type(torch.LongTensor)
+
+
+fixed_condition_ohe1 = onehot[fixed_condition[:, 0]].to(device)
+fixed_condition_ohe2 = onehot[fixed_condition[:, 1]].to(device)
+
 # Create input conditions vectors.
 input_condition = torch.cat((torch.ones(int(args.num_output), 1)*tp2ind[args.tp1], 
                             torch.ones(int(args.num_output), 1)*tp2ind[args.tp2]),
@@ -58,7 +73,7 @@ tp2_ohe = onehot[input_condition[:, 1]].to(device)
 with torch.no_grad():
     # Get generated image from the noise vector using
     # the trained generator.
-    generated_img = netG(noise, tp1_ohe, tp2_ohe).detach().cpu()
+    generated_img = netG(fixed_noise, fixed_condition_ohe1, fixed_condition_ohe2).detach().cpu()
 
 # Display the generated image.
 
@@ -68,5 +83,5 @@ if not os.path.exists(result_dir):
     os.mkdir(result_dir)
     print("Directory " , result_dir ,  " Created ")
 
-img_data = np.transpose(vutils.make_grid(generated_img, nrow=int(np.sqrt(int(args.num_output))), padding=2, normalize=True), (1,2,0))
+img_data = np.transpose(vutils.make_grid(fake_data, nrow=6, padding=2, normalize=True).cpu(), (1, 2, 0))
 plt.imsave(result_dir + args.load_path.split('/')[1].split('.')[0] +'.png', img_data)
