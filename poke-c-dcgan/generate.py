@@ -46,8 +46,8 @@ onehot = torch.zeros(params['vocab_size'], params['vocab_size'])
 onehot = onehot.scatter_(1, torch.LongTensor([i for i in range(params['vocab_size'])]).view(params['vocab_size'], 1), 1).view(params['vocab_size'], params['vocab_size'], 1, 1)
 
 # Create input conditions vectors.
-input_condition = torch.cat((torch.ones(int(args.num_output), 1)*color2ind[args.tp1], 
-                            torch.ones(int(args.num_output), 1)*color2ind[args.tp2]),
+input_condition = torch.cat((torch.ones(int(args.num_output), 1)*tp2ind[args.tp1], 
+                            torch.ones(int(args.num_output), 1)*tp2ind[args.tp2]),
                             dim=1).type(torch.LongTensor)
 
 # Generate the onehot embeddings for the conditions.
@@ -61,15 +61,12 @@ with torch.no_grad():
     generated_img = netG(noise, tp1_ohe, tp2_ohe).detach().cpu()
 
 # Display the generated image.
-plt.axis("off")
-#plt.title("Generated Images")
-img_data = np.transpose(vutils.make_grid(fake_data, nrow=6, padding=2, normalize=True).cpu(), (1, 2, 0))
-plt.imsave(result_dir +'/Epoch_{}.png'.format(epoch), img_data)
 
-result_dir = 'test_result/' + args.load_path.split('/')[1].split('.')[0]
+
+result_dir = 'test_result'
 if not os.path.exists(result_dir):
     os.mkdir(result_dir)
     print("Directory " , result_dir ,  " Created ")
 
 img_data = np.transpose(vutils.make_grid(generated_img, nrow=int(np.sqrt(int(args.num_output))), padding=2, normalize=True), (1,2,0))
-plt.imsave(result_dir +'/re.png', img_data)
+plt.imsave(result_dir + args.load_path.split('/')[1].split('.')[0] +'.png', img_data)
