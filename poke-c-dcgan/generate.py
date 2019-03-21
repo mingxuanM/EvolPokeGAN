@@ -13,8 +13,8 @@ from model import Generator
 parser = argparse.ArgumentParser()
 parser.add_argument('-load_path', default='checkpoints-pokedex/model_500.pth', help='Checkpoint to load path from')
 parser.add_argument('-num_output', default=9, help='Number of generated outputs')
-parser.add_argument('-tp1', default='fire', help='Eye color')
-parser.add_argument('-tp2', default='<UNK>', help='Hair color')
+parser.add_argument('-tp1', default='fire', help='type 1')
+parser.add_argument('-tp2', default='<UNK>', help='type 2')
 parser.add_argument('-load_json', default='data/pokegan-params.json', help='Load path for params json.')
 args = parser.parse_args()
 
@@ -63,7 +63,7 @@ with torch.no_grad():
 # Display the generated image.
 
 
-result_dir = 'test_result'
+result_dir = 'test_result/'
 if not os.path.exists(result_dir):
     os.mkdir(result_dir)
     print("Directory " , result_dir ,  " Created ")
