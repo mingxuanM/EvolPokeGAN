@@ -83,5 +83,5 @@ if not os.path.exists(result_dir):
     os.mkdir(result_dir)
     print("Directory " , result_dir ,  " Created ")
 
-img_data = np.transpose(vutils.make_grid(fake_data, nrow=6, padding=2, normalize=True).cpu(), (1, 2, 0))
+img_data = np.transpose(vutils.make_grid(generated_img, nrow=6, padding=2, normalize=True).cpu(), (1, 2, 0))
 plt.imsave(result_dir + args.load_path.split('/')[1].split('.')[0] +'.png', img_data)
