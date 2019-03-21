@@ -1,0 +1,47 @@
+/home/s1890135/miniconda3/envs/mlp/lib/python3.7/site-packages/torch/nn/functional.py:1332: UserWarning: nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.
+  warnings.warn("nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.")
+/home/s1890135/miniconda3/envs/mlp/lib/python3.7/site-packages/torch/nn/functional.py:1320: UserWarning: nn.functional.tanh is deprecated. Use torch.tanh instead.
+  warnings.warn("nn.functional.tanh is deprecated. Use torch.tanh instead.")
+Random Seed:  8008
+cuda:0  will be used.
+
+Generator(
+  (fc_embed1): Linear(in_features=20, out_features=128, bias=False)
+  (fc_embed2): Linear(in_features=20, out_features=128, bias=False)
+  (tconv1): ConvTranspose2d(356, 512, kernel_size=(4, 4), stride=(1, 1), bias=False)
+  (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (tconv2): ConvTranspose2d(512, 256, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+  (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (tconv3): ConvTranspose2d(256, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+  (bn3): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (tconv4): ConvTranspose2d(128, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+  (bn4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (tconv5): ConvTranspose2d(64, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+)
+3
+Discriminator(
+  (conv1): Conv2d(3, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+  (conv2): Conv2d(64, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+  (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (conv3): Conv2d(128, 256, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+  (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (conv4): Conv2d(256, 512, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+  (bn4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (conv5): Conv2d(768, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+  (bn5): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (conv6): Conv2d(512, 1, kernel_size=(4, 4), stride=(1, 1), bias=False)
+  (fc_embed1): Linear(in_features=20, out_features=128, bias=False)
+  (fc_embed2): Linear(in_features=20, out_features=128, bias=False)
+)
+Starting Training Loop...
+-------------------------
+True
+[0/1000][0/12]	Loss_D: 2.0237	Loss_G: 1.3812	D(x): 0.2775	D(G(z)): 0.3717 / 0.3069
+Traceback (most recent call last):
+  File "train.py", line 283, in <module>
+    }, 'checkpoints/model_epoch_{}.pth'.format(epoch))
+  File "/home/s1890135/miniconda3/envs/mlp/lib/python3.7/site-packages/torch/serialization.py", line 219, in save
+    return _with_file_like(f, "wb", lambda f: _save(obj, f, pickle_module, pickle_protocol))
+  File "/home/s1890135/miniconda3/envs/mlp/lib/python3.7/site-packages/torch/serialization.py", line 142, in _with_file_like
+    f = open(f, mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'checkpoints/model_epoch_0.pth'
