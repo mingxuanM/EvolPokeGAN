@@ -1,6 +1,6 @@
 # EvolPokeGan
 
-Apply different implementation of GANs on paired Pokémon evolution datasets.
+Apply different implementations of GANs on paired Pokémon evolution datasets.
   * DCGAN
-  * Conditional DCGAN
-  * Pixel2Pixel
+  * Conditional DCGAN: /poke-c-dcgan
+  * Pixel2Pixel: https://github.com/mingxuanM/poke_pixel2pixel
